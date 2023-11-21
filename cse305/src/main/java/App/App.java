@@ -8,6 +8,7 @@ import ConcreteBuilder.PatientConcreteBuilder;
 import ConcreteBuilder.PaymentConcreteBuilder;
 import Model.Doctor;
 import Model.Patient;
+import Model.Payment;
 
 public class App {
 
@@ -35,9 +36,19 @@ public class App {
                 .addPatient(patient)
                 .build();
 
-        // patient = patientBuilder.addDoctors(doctor).build();
+        patient = patientBuilder.addDoctors(doctor).build();
 
+        Payment payment = paymentBuilder
+                .setPaymentID(333)
+                .setDoctor(doctor)
+                .setPatient(patient)
+                .setConsultancyFee(999999)
+                .setDescription("Paid on 21/11/2023")
+                .createPayment();
+
+        System.out.println(payment);
         System.out.println(doctor);
+        System.out.println(patient);
 
     }
 }

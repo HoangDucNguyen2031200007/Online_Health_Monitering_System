@@ -30,9 +30,17 @@ public class Doctor extends User {
         return payments;
     }
 
+    private String getPatientNames() {
+        String names = "[";
+        for (Patient patient : patients) {
+            names += (patient.getName()+" ");
+        }
+        return names + "]";
+    }
+
     @Override
     public String toString() {
-        return super.toString() + "Doctor [doctorID=" + doctorID + ", patients=" + patients + ", payments=" + payments
+        return super.toString() + "Doctor [doctorID=" + doctorID + ", patients=" + getPatientNames() + ", payments=" + payments
                 + "]";
     }
 

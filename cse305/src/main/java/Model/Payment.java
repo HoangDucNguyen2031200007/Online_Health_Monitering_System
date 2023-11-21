@@ -40,8 +40,8 @@ public class Payment {
 
     @Override
     public String toString() {
-        return "Payment [paymentID=" + paymentID + ", doctor=" + doctor + ", patient=" + patient + ", consultancyFee="
-                + consultancyFee + ", description=" + description + "]";
+        return "Payment [paymentID=" + paymentID + ", doctor=" + doctor.getName() + ", patient=" + patient.getName()
+                + ", consultancyFee=" + consultancyFee + ", description=" + description + "]";
     }
 
 }
