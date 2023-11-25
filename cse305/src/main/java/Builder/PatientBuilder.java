@@ -1,10 +1,13 @@
 package Builder;
 
+import java.util.List;
+
 import Model.Doctor;
 import Model.Patient;
+import Model.Status;
 
 public interface PatientBuilder {
-    PatientBuilder setPatientID(int id);
+    PatientBuilder setPatientID(String id);
 
     PatientBuilder setPatientName(String name);
 
@@ -16,9 +19,21 @@ public interface PatientBuilder {
 
     PatientBuilder setPatientAddress(String address);
 
-    PatientBuilder setPatientStatus(String status);
+    PatientBuilder setPatientDOB(String dob);
 
-    PatientBuilder addDoctors(Doctor doctor);
+    PatientBuilder setPatientStatus(String statusID);
+
+    PatientBuilder addDoctors(String doctorID);
 
     Patient build();
+
+    Patient findById(String patientID);
+
+    List<Doctor> getAllDoctorById(String patientID);
+
+    Status getStatusById(String patientID);
+
+    void savePatient(Patient patient);
+
+    void deleteById(String patientID);
 }

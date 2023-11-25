@@ -1,11 +1,12 @@
 package Builder;
 
+import java.util.List;
+
 import Model.Doctor;
 import Model.Patient;
-import Model.Payment;
 
 public interface DoctorBuilder {
-    DoctorBuilder setDoctorID(int id);
+    DoctorBuilder setDoctorID(String id);
 
     DoctorBuilder setDoctorName(String name);
 
@@ -17,9 +18,17 @@ public interface DoctorBuilder {
 
     DoctorBuilder setDoctorAddress(String address);
 
-    DoctorBuilder addPatient(Patient patient);
-
-    DoctorBuilder addPayment(Payment payment);
+    DoctorBuilder addPatient(String patientID);
 
     Doctor build();
+
+    Doctor findById(String doctorID);
+
+    List<String> getAllDoctorName();
+
+    List<Patient> getAllPatientById(String doctorID);
+
+    void saveDoctor(Doctor doctor);
+
+    void deleteById(String doctorID);
 }

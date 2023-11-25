@@ -1,24 +1,32 @@
 package ConcreteBuilder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Builder.PatientBuilder;
 import Model.Doctor;
 import Model.Patient;
+import Model.Status;
+import Service.PatientService;
+import Service.ServiceImpl.PatientServiceImpl;
 
 public class PatientConcreteBuilder implements PatientBuilder {
-    private int patientID;
+    private String patientID;
     private String name;
     private String email;
     private String password;
     private String phone;
     private String address;
-    private String status;
-    private List<Doctor> doctors = new ArrayList<>();
+    private String statusID;
+    private int age;
+    private String dob;
+    private List<String> doctors = new ArrayList<>();
+
+    private PatientService patientService = new PatientServiceImpl();
 
     @Override
-    public PatientBuilder setPatientID(int id) {
+    public PatientBuilder setPatientID(String id) {
         this.patientID = id;
         return this;
     }
@@ -55,19 +63,52 @@ public class PatientConcreteBuilder implements PatientBuilder {
 
     @Override
     public PatientBuilder setPatientStatus(String status) {
-        this.status = status;
+        this.statusID = status;
         return this;
     }
 
     @Override
-    public PatientBuilder addDoctors(Doctor doctor) {
-        this.doctors.add(doctor);
+    public PatientBuilder setPatientDOB(String dob) {
+        this.dob = dob;
+        Date now = new Date();
+        this.age = now.getYear() - Integer.parseInt(dob.split("-")[2]);
+        return this;
+    }
+
+    @Override
+    public PatientBuilder addDoctors(String doctorID) {
+        this.doctors.add(doctorID);
         return this;
     }
 
     @Override
     public Patient build() {
-        return new Patient(name, email, password, phone, address, patientID, status, doctors);
+        return new Patient(name, email, password, phone, address, patientID, statusID, age, dob, doctors);
+    }
+
+    @Override
+    public Patient findById(String patientID) {
+        return patientService.findById(patientID);
+    }
+
+    @Override
+    public List<Doctor> getAllDoctorById(String patientID) {
+        return patientService.getAllDoctorById(patientID);
+    }
+
+    @Override
+    public Status getStatusById(String patientID) {
+        return patientService.getStatusById(patientID);
+    }
+
+    @Override
+    public void savePatient(Patient patient) {
+        patientService.savePatient(patient);
+    }
+
+    @Override
+    public void deleteById(String patientID) {
+        patientService.deleteById(patientID);
     }
 
 }

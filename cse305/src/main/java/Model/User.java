@@ -49,13 +49,10 @@ public abstract class User {
         return true;
     }
 
-    
-
     @Override
     public String toString() {
         return "User [name=" + name + ", email=" + email + ", password=" + password + ", phone=" + phone + ", address="
                 + address + "]";
     }
 
-    
 }

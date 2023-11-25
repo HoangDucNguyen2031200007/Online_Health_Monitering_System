@@ -3,45 +3,43 @@ package Model;
 import java.util.List;
 
 public class Patient extends User {
-    private int patientID;
-    private String status;
-    private List<Doctor> doctors;
+    private String patientID;
+    private String statusID;
+    private int age;
+    private String dob;
+    private List<String> doctors;
 
     public Patient() {
     }
 
-    public Patient(String name, String email, String password, String phone, String address, int patientID,
-            String status, List<Doctor> doctors) {
+    public Patient(String name, String email, String password, String phone, String address, String patientID,
+            String statusID, int age, String dob, List<String> doctors) {
         super(name, email, password, phone, address);
         this.patientID = patientID;
-        this.status = status;
+        this.statusID = statusID;
+        this.age = age;
+        this.dob = dob;
         this.doctors = doctors;
     }
 
-    public int getPatientID() {
+    public String getPatientID() {
         return patientID;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatusID() {
+        return statusID;
     }
 
-    public List<Doctor> getDoctors() {
+    public int getAge() {
+        return age;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public List<String> getDoctors() {
         return doctors;
-    }
-
-    private String getDoctorNames() {
-        String names = "[";
-        for (Doctor doctor : doctors) {
-            names += (doctor.getName() + " ");
-        }
-        return names + "]";
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + "Patient [patientID=" + patientID + ", status=" + status + ", doctors="
-                + getDoctorNames() + "]";
     }
 
 }

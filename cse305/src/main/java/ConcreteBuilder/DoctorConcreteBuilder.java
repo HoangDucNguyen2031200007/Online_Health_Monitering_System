@@ -6,20 +6,22 @@ import java.util.List;
 import Builder.DoctorBuilder;
 import Model.Doctor;
 import Model.Patient;
-import Model.Payment;
+import Service.DoctorService;
+import Service.ServiceImpl.DoctorServiceImpl;
 
 public class DoctorConcreteBuilder implements DoctorBuilder {
-    private int doctorID;
+    private String doctorID;
     private String name;
     private String email;
     private String password;
     private String phone;
     private String address;
-    private List<Patient> patients=new ArrayList<>();
-    private List<Payment> payments=new ArrayList<>();
+    private List<String> patients = new ArrayList<>();
+
+    private DoctorService doctorService = new DoctorServiceImpl();
 
     @Override
-    public DoctorBuilder setDoctorID(int id) {
+    public DoctorBuilder setDoctorID(String id) {
         this.doctorID = id;
         return this;
     }
@@ -55,20 +57,39 @@ public class DoctorConcreteBuilder implements DoctorBuilder {
     }
 
     @Override
-    public DoctorBuilder addPatient(Patient patient) {
-        this.patients.add(patient);
-        return this;
-    }
-
-    @Override
-    public DoctorBuilder addPayment(Payment payment) {
-        this.payments.add(payment);
+    public DoctorBuilder addPatient(String patientID) {
+        this.patients.add(patientID);
         return this;
     }
 
     @Override
     public Doctor build() {
-        return new Doctor(name, email, password, phone, address, doctorID, patients, payments);
+        return new Doctor(name, email, password, phone, address, doctorID, patients);
+    }
+
+    @Override
+    public Doctor findById(String doctorID) {
+        return doctorService.findById(doctorID);
+    }
+
+    @Override
+    public List<String> getAllDoctorName() {
+        return doctorService.getAllDoctorName();
+    }
+
+    @Override
+    public List<Patient> getAllPatientById(String doctorID) {
+        return doctorService.getAllPatientById(doctorID);
+    }
+
+    @Override
+    public void saveDoctor(Doctor doctor) {
+        doctorService.saveDoctor(doctor);
+    }
+
+    @Override
+    public void deleteById(String doctorID) {
+        doctorService.deleteById(doctorID);
     }
 
 }
