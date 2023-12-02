@@ -8,8 +8,8 @@ package Entity;
  *
  * @author ASUS ROG
  */
-
 public class Patient extends User {
+
     private String patientID;
     private Status status;
     private int age;
@@ -19,9 +19,10 @@ public class Patient extends User {
     public Patient() {
     }
 
-    public Patient(String name, String email, String password, String phone, String address,
+    public Patient(String name, String email, String password, String phone, String address, String patientID,
             Status status, int age, String dob, double fee) {
         super(name, email, password, phone, address);
+        this.patientID = patientID;
         this.status = status;
         this.age = age;
         this.dob = dob;

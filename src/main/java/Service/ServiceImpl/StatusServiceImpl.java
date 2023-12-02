@@ -16,7 +16,7 @@ public class StatusServiceImpl implements StatusService{
     private Connection conn;
 
     @Override
-    public Status findById(String statusID) {
+    public Status findById(int statusID) {
         return null;
     }
 }

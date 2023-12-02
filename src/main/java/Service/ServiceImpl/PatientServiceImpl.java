@@ -1,5 +1,6 @@
 package Service.ServiceImpl;
 
+import ConcreteBuilder.PatientConcreteBuilder;
 import java.sql.Connection;
 import java.util.List;
 
@@ -21,36 +22,41 @@ public class PatientServiceImpl implements PatientService {
     private ResultSet rs;
 
     @Override
-    public Patient findByEmail(String patientID) {
-//        try {
-//            conn = DBConnUtils.getConnection();
-//
-//            String sql = "Select * from Patient a where a.PatientID=?";
-//
-//            PreparedStatement pstm = conn.prepareStatement(sql);
-//            pstm.setString(1, patientID);
-//
-//            ResultSet rs = pstm.executeQuery();
-//
-//            
-//            while (rs.next()) {
-//                String patientName = rs.getString("PatientName");
-//                String patientEmail = rs.getString("PatientEmail");
-//                String patientPassword = rs.getString("PatientPassword");
-//                String patientPhone = rs.getString("PatientPhone");
-//                String patientAddress = rs.getString("PatientAddress");
-//                String patientStatusID = rs.getString("PatientStatusID");
-//                Status status = myStatusServiceImpl.findById(patientStatusID);
-//                double patientFee = Double.parseDouble(rs.getString("PatientFee"));
-//                String patientDOB = rs.getString("PatientDOB");
-////                Patient newPatient = new Patient(patientName, patientEmail, patientPassword, patientPhone, patientAddress, patientID, status, 0, patientDOB, patientFee);
-//                return null;
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        } finally {
-//            DBConnUtils.closeConnection(conn);
-//        }
+    public Patient findByEmail(String email) {
+        try {
+            Patient patient = null;
+
+            st = con.prepareCall("select * from patient where PatientEmail=?");
+            st.setString(1, email);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("PatientId");
+                String Name = rs.getString("PatientName");
+                String Password = rs.getString("PatientPassword");
+                String Phone = rs.getString("PatientPhone");
+                String Address = rs.getString("PatientAddress");
+                int StatusID = rs.getInt("PatientStatusID");
+                Status status = new StatusServiceImpl().findById(StatusID);
+                double Fee = rs.getDouble("PatientFee");
+                String DOB = rs.getString("PatientDOB");
+
+                patient = new PatientConcreteBuilder()
+                        .setPatientId(id)
+                        .setPatientName(Name)
+                        .setPatientEmail(email)
+                        .setPatientPassword(Password)
+                        .setPatientDOB(DOB)
+                        .setPatientPhone(Phone)
+                        .setPatientAddress(Address)
+                        .setPatientStatus(status)
+                        .setPatientFee(Fee)
+                        .build();
+            }
+            return patient;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
@@ -74,7 +80,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public boolean savePatient(Patient patient) {
-         try {
+        try {
             st = con.prepareStatement("""
                                       INSERT INTO patient (PatientName, PatientEmail, PatientPassword, PatientPhone, PatientAddress, PatientStatusID, PatientFee, PatientDOB) 
                                       VALUES (?, ?, ?, ?, ?, null, 0, ?);

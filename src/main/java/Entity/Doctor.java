@@ -9,6 +9,10 @@ public class Doctor extends User {
         this.doctorID = doctorID;
     }
 
+    public Doctor() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getDoctorID() {
         return doctorID;
     }

@@ -9,6 +9,8 @@ import Entity.Patient;
 import Entity.Status;
 
 public class PatientConcreteBuilder implements PatientBuilder {
+
+    private String id = "0";
     private String name;
     private String email;
     private String password;
@@ -17,7 +19,13 @@ public class PatientConcreteBuilder implements PatientBuilder {
     private Status status;
     private int age;
     private String dob;
-    private double fee;
+    private double fee = 0;
+
+    @Override
+    public PatientBuilder setPatientId(String id) {
+        this.id = id;
+        return this;
+    }
 
     @Override
     public PatientBuilder setPatientName(String name) {
@@ -64,7 +72,14 @@ public class PatientConcreteBuilder implements PatientBuilder {
     }
 
     @Override
-    public Patient build() {
-        return new Patient(name, email, password, phone, address, status, age, dob, fee);
+    public PatientBuilder setPatientFee(double fee) {
+        this.fee = fee;
+        return this;
     }
+
+    @Override
+    public Patient build() {
+        return new Patient(name, email, password, phone, address, id, status, age, dob, fee);
+    }
+
 }

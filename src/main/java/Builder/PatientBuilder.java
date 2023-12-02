@@ -12,6 +12,7 @@ import Entity.Status;
  * @author ASUS ROG
  */
 public interface PatientBuilder {
+    PatientBuilder setPatientId(String id);
 
     PatientBuilder setPatientName(String name);
 
@@ -26,6 +27,8 @@ public interface PatientBuilder {
     PatientBuilder setPatientDOB(String dob);
 
     PatientBuilder setPatientStatus(Status status);
+    
+    PatientBuilder setPatientFee(double fee);
 
     Patient build();
 }

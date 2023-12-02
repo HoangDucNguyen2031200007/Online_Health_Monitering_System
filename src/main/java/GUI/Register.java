@@ -269,7 +269,7 @@ public class Register extends javax.swing.JFrame {
         String phone = doctorPhone.getText();
         String address = doctorAddress.getText();
 
-        Doctor doctor = null;
+        Doctor doctor = new Doctor();
         doctor = new DoctorConcreteBuilder()
                 .setDoctorName(name)
                 .setDoctorEmail(email)
@@ -290,10 +290,11 @@ public class Register extends javax.swing.JFrame {
         String address = patientAddress.getText();
         String DOB = patientDOB.getText();
 
-        Patient patient = new PatientConcreteBuilder()
+        Patient patient = new Patient();
+        patient = new PatientConcreteBuilder()
                 .setPatientName(name)
                 .setPatientEmail(email)
-                .setPatientPassword(password)
+                .setPatientPassword(patient.encode(password))
                 .setPatientDOB(DOB)
                 .setPatientPhone(phone)
                 .setPatientStatus(null)

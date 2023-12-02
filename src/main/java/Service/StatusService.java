@@ -11,5 +11,6 @@ import Entity.Status;
  * @author ASUS ROG
  */
 public interface StatusService {
-     public Status findById(String statusID);
+
+    Status findById(int statusID);
 }
