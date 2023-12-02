@@ -2,18 +2,18 @@ package Service;
 
 import java.util.List;
 
-import entity.Doctor;
-import entity.Patient;
-import entity.Status;
+import Entity.Doctor;
+import Entity.Patient;
+import Entity.Status;
 
 public interface PatientService {
-    Patient findById(String patientID);
+    Patient findByEmail(String email);
 
     List<Doctor> getAllDoctorById(String patientID);
 
     Status getStatusById(String patientID);
 
-    void savePatient(Patient patient);
+    boolean savePatient(Patient patient);
 
-    void deleteById(String patientID);
+    boolean deleteById(String patientID);
 }

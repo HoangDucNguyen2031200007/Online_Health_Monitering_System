@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package builder;
+package Builder;
 
-import entity.Patient;
-import entity.Status;
+import Entity.Patient;
+import Entity.Status;
 
 /**
  *
  * @author ASUS ROG
  */
 public interface PatientBuilder {
-    PatientBuilder setPatientID(String id);
 
     PatientBuilder setPatientName(String name);
 
@@ -27,8 +26,6 @@ public interface PatientBuilder {
     PatientBuilder setPatientDOB(String dob);
 
     PatientBuilder setPatientStatus(Status status);
-
-    PatientBuilder addDoctors(String doctorID);
 
     Patient build();
 }

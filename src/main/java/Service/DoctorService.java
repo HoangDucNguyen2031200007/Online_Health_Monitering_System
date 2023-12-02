@@ -2,8 +2,8 @@ package Service;
 
 import java.util.List;
 
-import entity.Doctor;
-import entity.Patient;
+import Entity.Doctor;
+import Entity.Patient;
 
 public interface DoctorService {
     Doctor findById(String doctorID);
@@ -12,7 +12,9 @@ public interface DoctorService {
 
     List<Patient> getAllPatientById(String doctorID);
 
-    void saveDoctor(Doctor doctor);
+    boolean saveDoctor(Doctor doctor);
 
-    void deleteById(String doctorID);
+    boolean deleteById(String doctorID);
+
+    Doctor findByEmail(String email);
 }

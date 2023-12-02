@@ -1,23 +1,20 @@
 package ConcreteBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import builder.DoctorBuilder;
-import entity.Doctor;
+import Builder.DoctorBuilder;
+import Entity.Doctor;
 
 public class DoctorConcreteBuilder implements DoctorBuilder {
-    private String doctorID;
+
+    private String id = "0";
     private String name;
     private String email;
     private String password;
     private String phone;
     private String address;
-    private List<String> patients = new ArrayList<>();
 
     @Override
-    public DoctorBuilder setDoctorID(String id) {
-        this.doctorID = id;
+    public DoctorBuilder setDoctorId(String id) {
+        this.id = id;
         return this;
     }
 
@@ -52,14 +49,8 @@ public class DoctorConcreteBuilder implements DoctorBuilder {
     }
 
     @Override
-    public DoctorBuilder addPatient(String patientID) {
-        this.patients.add(patientID);
-        return this;
-    }
-
-    @Override
     public Doctor build() {
-        return new Doctor(name, email, password, phone, address, doctorID, patients);
+        return new Doctor(id, name, email, password, phone, address);
     }
 
 }

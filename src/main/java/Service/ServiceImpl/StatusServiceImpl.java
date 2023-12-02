@@ -6,7 +6,7 @@ package Service.ServiceImpl;
 
 
 import Service.StatusService;
-import entity.Status;
+import Entity.Status;
 import java.sql.Connection;
 /**
  *

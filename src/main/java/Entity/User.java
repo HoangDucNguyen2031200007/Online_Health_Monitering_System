@@ -2,13 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entity;
+package Entity;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ASUS ROG
  */
 public abstract class User {
+
     private String name;
     private String email;
     private String password;
@@ -46,15 +53,25 @@ public abstract class User {
         return address;
     }
 
-    public boolean login(String email, String password) {
-        if (this.email.equals(email) && this.password.equals(password)) {
-            return true;
-        }
-        return false;
+    public boolean comparePassword(String password) {
+        return this.password.equals(encode(password));
     }
 
-    public boolean logout() {
-        return true;
+    public String encode(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(password.getBytes());
+            BigInteger no = new BigInteger(1, messageDigest);
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            System.out.println(hashtext);
+            return hashtext;
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     @Override

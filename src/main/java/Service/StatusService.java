@@ -4,7 +4,7 @@
  */
 package Service;
 
-import entity.Status;
+import Entity.Status;
 
 /**
  *

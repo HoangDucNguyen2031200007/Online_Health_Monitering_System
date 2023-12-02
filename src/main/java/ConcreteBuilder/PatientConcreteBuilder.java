@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import builder.PatientBuilder;
-import entity.Patient;
-import entity.Status;
+import Builder.PatientBuilder;
+import Entity.Patient;
+import Entity.Status;
 
 public class PatientConcreteBuilder implements PatientBuilder {
-    private String patientID;
     private String name;
     private String email;
     private String password;
@@ -19,13 +18,6 @@ public class PatientConcreteBuilder implements PatientBuilder {
     private int age;
     private String dob;
     private double fee;
-    private List<String> doctors = new ArrayList<>();
-
-    @Override
-    public PatientBuilder setPatientID(String id) {
-        this.patientID = id;
-        return this;
-    }
 
     @Override
     public PatientBuilder setPatientName(String name) {
@@ -67,18 +59,12 @@ public class PatientConcreteBuilder implements PatientBuilder {
     public PatientBuilder setPatientDOB(String dob) {
         this.dob = dob;
         Date now = new Date();
-        this.age = now.getYear() - Integer.parseInt(dob.split("/")[0]);
-        return this;
-    }
-
-    @Override
-    public PatientBuilder addDoctors(String doctorID) {
-        this.doctors.add(doctorID);
+        this.age = now.getYear() - Integer.parseInt(dob.split("/")[2]);
         return this;
     }
 
     @Override
     public Patient build() {
-        return new Patient(name, email, password, phone, address, patientID, status, age, dob, fee);
+        return new Patient(name, email, password, phone, address, status, age, dob, fee);
     }
 }
