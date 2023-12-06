@@ -5,13 +5,15 @@
 package Builder;
 
 import Entity.Doctor;
+import Entity.Patient;
+import java.util.List;
 
 /**
  *
  * @author ASUS ROG
  */
 public interface DoctorBuilder {
-    
+
     DoctorBuilder setDoctorId(String id);
 
     DoctorBuilder setDoctorName(String name);
@@ -23,6 +25,10 @@ public interface DoctorBuilder {
     DoctorBuilder setDoctorPhone(String phone);
 
     DoctorBuilder setDoctorAddress(String address);
+
+    DoctorBuilder setPatients(List<Patient> patients);
+
+    DoctorBuilder addPatient(Patient patientID);
 
     Doctor build();
 }

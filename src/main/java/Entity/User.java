@@ -10,11 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author ASUS ROG
- */
-public abstract class User {
+public class User {
 
     private String name;
     private String email;

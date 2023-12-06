@@ -12,10 +12,15 @@
         <exec.mainClass>App.Main</exec.mainClass>
     </properties>
     <dependencies>     
-        <dependency>
+        <!--        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.31</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.4.2.jre11</version>
         </dependency>
     </dependencies>
 </project>

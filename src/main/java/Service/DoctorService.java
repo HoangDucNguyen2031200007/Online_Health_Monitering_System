@@ -10,11 +10,9 @@ public interface DoctorService {
 
     List<String> getAllDoctorName();
 
-    List<Patient> getAllPatientById(String doctorID);
-
     boolean saveDoctor(Doctor doctor);
 
     boolean deleteById(String doctorID);
 
-    Doctor findByEmail(String email);
+    Doctor login(String email, String password);
 }

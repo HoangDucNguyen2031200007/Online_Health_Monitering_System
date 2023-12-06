@@ -2,205 +2,160 @@ package GUI;
 
 import Entity.Doctor;
 import Entity.Patient;
+import Entity.User;
 import Service.DoctorService;
 import Service.PatientService;
 import Service.ServiceImpl.DoctorServiceImpl;
 import Service.ServiceImpl.PatientServiceImpl;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
-    
+
     public Login() {
         this.setResizable(false);
-        setLocationCenter();
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titleLabel = new javax.swing.JLabel();
-        usernameLabel = new javax.swing.JLabel();
-        emailTextField = new javax.swing.JTextField();
-        passwordLabel = new javax.swing.JLabel();
-        passwordTextField = new javax.swing.JTextField();
-        registerButton = new javax.swing.JButton();
-        loginButton = new javax.swing.JButton();
+        emailLb = new javax.swing.JLabel();
+        emailTxt = new javax.swing.JTextField();
+        passwordLb = new javax.swing.JLabel();
+        passwordTxt = new javax.swing.JPasswordField();
+        loginLb = new javax.swing.JLabel();
+        loginBtn = new javax.swing.JButton();
         typeLabel = new javax.swing.JLabel();
-        typeUserComboBox = new javax.swing.JComboBox<>();
+        typeBox = new javax.swing.JComboBox<>();
+        registerBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
 
-        titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("LOGIN");
+        emailLb.setText("Email :");
 
-        usernameLabel.setText("Email");
+        passwordLb.setText("Password :");
 
-        emailTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                emailTextFieldFocusGained(evt);
+        loginLb.setBackground(new java.awt.Color(51, 255, 0));
+        loginLb.setFont(new java.awt.Font("Sitka Text", 1, 24)); // NOI18N
+        loginLb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loginLb.setText("Login");
+
+        loginBtn.setText("Login");
+        loginBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginBtnMouseClicked(evt);
             }
         });
-        emailTextField.addActionListener(new java.awt.event.ActionListener() {
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextFieldActionPerformed(evt);
+                loginBtnActionPerformed(evt);
             }
         });
 
-        passwordLabel.setText("Password");
+        typeLabel.setText("Type Of User:");
 
-        passwordTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                passwordTextFieldFocusGained(evt);
+        typeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor" }));
+
+        registerBtn.setText("Register");
+        registerBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registerBtnMouseClicked(evt);
             }
         });
-
-        registerButton.setBackground(new java.awt.Color(204, 204, 0));
-        registerButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        registerButton.setText("Register");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
-            }
-        });
-
-        loginButton.setBackground(new java.awt.Color(51, 204, 0));
-        loginButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        loginButton.setForeground(new java.awt.Color(255, 255, 255));
-        loginButton.setText("Login");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
-
-        typeLabel.setText("Login as");
-
-        typeUserComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(loginLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(typeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(typeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(passwordLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailTextField)
-                            .addComponent(passwordTextField)
-                            .addComponent(typeUserComboBox, 0, 282, Short.MAX_VALUE)))
-                    .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(registerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(passwordTxt)
+                            .addComponent(typeBox, 0, 302, Short.MAX_VALUE)
+                            .addComponent(emailTxt)))
+                    .addComponent(registerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(titleLabel)
+                .addGap(28, 28, 28)
+                .addComponent(loginLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailLb)
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernameLabel)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordLabel)
-                    .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordLb)
+                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeLabel)
-                    .addComponent(typeUserComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextFieldActionPerformed
+    private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
+        User user = new User();
+        String type = typeBox.getSelectedItem().toString();
+        String email = emailTxt.getText();
+        String password = user.encode(passwordTxt.getText());
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        Register register = new Register();
-        register.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_registerButtonActionPerformed
-
-    private void emailTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTextFieldFocusGained
-
-    }//GEN-LAST:event_emailTextFieldFocusGained
-
-    private void passwordTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTextFieldFocusGained
-
-    }//GEN-LAST:event_passwordTextFieldFocusGained
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        String email = emailTextField.getText();
-        String password = passwordTextField.getText();
-        String type = (String) typeUserComboBox.getSelectedItem();
-        
         if (type.equals("Patient")) {
             PatientService patientService = new PatientServiceImpl();
-            Patient patient = patientService.findByEmail(email);
-            
-            
-            if (patient != null && patient.comparePassword(password)) {
-                JOptionPane.showMessageDialog(this, "Login Successful!");
-                PatientPage patientPage = new PatientPage(patient);
-                patientPage.setVisible(true);
-                this.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(this, "Email or Password was incorrect", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            user = patientService.login(email, password);
+            checkUser(user);
         } else {
             DoctorService doctorService = new DoctorServiceImpl();
-            Doctor doctor = doctorService.findByEmail(email);
-            
-            if (doctor != null && doctor.comparePassword(password)) {
-                JOptionPane.showMessageDialog(this, "Login Successful!");
-                DoctorPage doctorPage = new DoctorPage(doctor);
-                doctorPage.setVisible(true);
-                this.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(this, "Email or Password was incorrect", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            user = doctorService.login(email, password);
+            checkUser(user);
         }
 
-    }//GEN-LAST:event_loginButtonActionPerformed
-    private void setLocationCenter() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        this.setSize(width / 2, height / 2);
-        
-        this.setLocationRelativeTo(null);
-    }
 
+    }//GEN-LAST:event_loginBtnMouseClicked
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+
+    }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void registerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerBtnMouseClicked
+       new Register().setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_registerBtnMouseClicked
+    private void checkUser(User user) {
+        if (user == null) {
+            JOptionPane.showMessageDialog(this, "Email or Password was incorrect!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Login successful!");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField emailTextField;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextField passwordTextField;
-    private javax.swing.JButton registerButton;
-    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel emailLb;
+    private javax.swing.JTextField emailTxt;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JLabel loginLb;
+    private javax.swing.JLabel passwordLb;
+    private javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JButton registerBtn;
+    private javax.swing.JComboBox<String> typeBox;
     private javax.swing.JLabel typeLabel;
-    private javax.swing.JComboBox<String> typeUserComboBox;
-    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

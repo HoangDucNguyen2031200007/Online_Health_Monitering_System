@@ -2,14 +2,14 @@ package Service;
 
 import java.util.List;
 
-import Entity.Doctor;
 import Entity.Patient;
 import Entity.Status;
 
 public interface PatientService {
-    Patient findByEmail(String email);
 
-    List<Doctor> getAllDoctorById(String patientID);
+    Patient login(String email, String password);
+
+    List<Patient> getAllByDoctorId(String doctorId);
 
     Status getStatusById(String patientID);
 
