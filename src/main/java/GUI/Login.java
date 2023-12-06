@@ -13,6 +13,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -29,6 +30,7 @@ public class Login extends javax.swing.JFrame {
         typeLabel = new javax.swing.JLabel();
         typeBox = new javax.swing.JComboBox<>();
         registerBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +66,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Forgot Password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,15 +87,16 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(passwordTxt)
                             .addComponent(typeBox, 0, 302, Short.MAX_VALUE)
                             .addComponent(emailTxt)))
-                    .addComponent(registerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(registerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(loginLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(36, 36, 36)
+                .addContainerGap()
+                .addComponent(loginLb, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLb)
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -106,8 +111,10 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,14 +129,12 @@ public class Login extends javax.swing.JFrame {
         if (type.equals("Patient")) {
             PatientService patientService = new PatientServiceImpl();
             user = patientService.login(email, password);
-            checkUser(user);
         } else {
             DoctorService doctorService = new DoctorServiceImpl();
             user = doctorService.login(email, password);
-            checkUser(user);
         }
-
-
+        checkUser(user);
+        showUserPage(user);
     }//GEN-LAST:event_loginBtnMouseClicked
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
@@ -137,8 +142,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void registerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerBtnMouseClicked
-       new Register().setVisible(true);
-       this.setVisible(false);
+        new Register().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_registerBtnMouseClicked
     private void checkUser(User user) {
         if (user == null) {
@@ -147,9 +152,20 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Login successful!");
         }
     }
+
+    private void showUserPage(User user) {
+        if (user instanceof Patient) {
+            new PatientPage(user).setVisible(true);
+            this.dispose();
+        } else if (user instanceof Doctor) {
+            new DoctorPage(user).setVisible(true);
+            this.dispose();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel emailLb;
     private javax.swing.JTextField emailTxt;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JLabel loginLb;
     private javax.swing.JLabel passwordLb;

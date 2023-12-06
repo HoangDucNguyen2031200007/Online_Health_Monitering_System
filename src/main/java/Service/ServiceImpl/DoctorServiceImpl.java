@@ -72,6 +72,7 @@ public class DoctorServiceImpl implements DoctorService {
 
             PreparedStatement st = con.prepareStatement("select * from doctor where DoctorEmail=? and DoctorPassword=?");
             st.setString(1, email);
+            st.setString(2, password);
 
             ResultSet rs = st.executeQuery();
 

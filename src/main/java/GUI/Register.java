@@ -8,14 +8,12 @@ import Service.DoctorService;
 import Service.PatientService;
 import Service.ServiceImpl.DoctorServiceImpl;
 import Service.ServiceImpl.PatientServiceImpl;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 public class Register extends javax.swing.JFrame {
 
     public Register() {
         this.setResizable(false);
-        setLocationCenter();
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -304,14 +302,7 @@ public class Register extends javax.swing.JFrame {
         PatientService patientService = new PatientServiceImpl();
         patientService.savePatient(patient);
     }//GEN-LAST:event_patientRegisterButtonActionPerformed
-    private void setLocationCenter() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        this.setSize(width / 2, height / 2);
 
-        this.setLocationRelativeTo(null);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField doctorAddress;
     private javax.swing.JTextField doctorEmail;
@@ -348,6 +339,6 @@ public class Register extends javax.swing.JFrame {
     private void toLoginPage() {
         Login login = new Login();
         login.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }
 }

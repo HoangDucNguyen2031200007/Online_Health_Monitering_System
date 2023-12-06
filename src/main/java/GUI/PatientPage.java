@@ -5,6 +5,7 @@
 package GUI;
 
 import Entity.Patient;
+import Entity.User;
 
 /**
  *
@@ -14,8 +15,10 @@ public class PatientPage extends javax.swing.JFrame {
 
     private Patient patient;
 
-    public PatientPage(Patient patient) {
-        this.patient = patient;
+    public PatientPage(User user) {
+        this.patient = (Patient) user;
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 

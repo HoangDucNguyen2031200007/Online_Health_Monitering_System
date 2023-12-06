@@ -25,4 +25,12 @@ public class Doctor extends User {
         return patients;
     }
 
+    public Patient findPatientByName(String patientName) {
+        for (Patient p : patients) {
+            if (p.getName().equals(patientName)) {
+                return p;
+            }
+        }
+        return null;
+    }
 }

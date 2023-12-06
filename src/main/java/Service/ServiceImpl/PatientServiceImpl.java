@@ -82,12 +82,15 @@ public class PatientServiceImpl implements PatientService {
                 String name = rs.getString("PatientName");
                 String phone = rs.getString("PatientPhone");
                 String address = rs.getString("PatientAddress");
+                int StatusID = rs.getInt("PatientStatusID");
+                Status status = new StatusServiceImpl().findById(StatusID);
 
                 Patient patient = new PatientConcreteBuilder()
                         .setPatientId(id)
                         .setPatientName(name)
                         .setPatientPhone(phone)
                         .setPatientAddress(address)
+                        .setPatientStatus(status)
                         .build();
 
                 patients.add(patient);
