@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entity;
 
-/**
- *
- * @author ASUS ROG
- */
 public class Patient extends User {
 
     private String patientID;
-    private Status status;
+    private int statusId;
     private int age;
     private String dob;
     private double fee;
@@ -20,10 +12,10 @@ public class Patient extends User {
     }
 
     public Patient(String name, String email, String password, String phone, String address, String patientID,
-            Status status, int age, String dob, double fee) {
+            int statusId, int age, String dob, double fee) {
         super(name, email, password, phone, address);
         this.patientID = patientID;
-        this.status = status;
+        this.statusId = statusId;
         this.age = age;
         this.dob = dob;
         this.fee = fee;
@@ -31,10 +23,6 @@ public class Patient extends User {
 
     public String getPatientID() {
         return patientID;
-    }
-
-    public Status getStatusID() {
-        return status;
     }
 
     public int getAge() {
@@ -45,8 +33,8 @@ public class Patient extends User {
         return dob;
     }
 
-    public Status getStatus() {
-        return status;
+    public int getStatusId() {
+        return statusId;
     }
 
     public double getFee() {

@@ -3,16 +3,20 @@ package Service;
 import java.util.List;
 
 import Entity.Doctor;
-import Entity.Patient;
 
 public interface DoctorService {
+
     Doctor findById(String doctorID);
 
-    List<String> getAllDoctorName();
+    boolean findByEmail(String email);
 
-    boolean saveDoctor(Doctor doctor);
+    List<Doctor> getDoctorByPatientId(String patientId);
 
-    boolean deleteById(String doctorID);
+    boolean addDoctor(Doctor doctor);
+
+    boolean updateDoctor(Doctor doctor);
 
     Doctor login(String email, String password);
+
+    boolean updatePassword(String password, String email);
 }

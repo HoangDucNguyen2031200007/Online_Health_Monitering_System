@@ -8,6 +8,7 @@ import Service.DoctorService;
 import Service.PatientService;
 import Service.ServiceImpl.DoctorServiceImpl;
 import Service.ServiceImpl.PatientServiceImpl;
+import javax.swing.JOptionPane;
 
 public class Register extends javax.swing.JFrame {
 
@@ -277,7 +278,11 @@ public class Register extends javax.swing.JFrame {
                 .build();
 
         DoctorService doctorService = new DoctorServiceImpl();
-        doctorService.saveDoctor(doctor);
+        if (doctorService.addDoctor(doctor)) {
+            JOptionPane.showMessageDialog(this, "Register successful!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Something was wrong", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_doctorRegisterButtonActionPerformed
 
     private void patientRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientRegisterButtonActionPerformed
@@ -295,12 +300,16 @@ public class Register extends javax.swing.JFrame {
                 .setPatientPassword(patient.encode(password))
                 .setPatientDOB(DOB)
                 .setPatientPhone(phone)
-                .setPatientStatus(null)
+                .setPatientStatusId(0)
                 .setPatientAddress(address)
                 .build();
 
         PatientService patientService = new PatientServiceImpl();
-        patientService.savePatient(patient);
+        if (patientService.addPatient(patient)) {
+            JOptionPane.showMessageDialog(this, "Register successful!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Something was wrong", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_patientRegisterButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

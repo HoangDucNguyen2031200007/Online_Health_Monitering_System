@@ -1,10 +1,8 @@
 package ConcreteBuilder;
 
-import java.util.Date;
-
 import Builder.PatientBuilder;
 import Entity.Patient;
-import Entity.Status;
+import java.time.LocalDateTime;
 
 public class PatientConcreteBuilder implements PatientBuilder {
 
@@ -14,7 +12,7 @@ public class PatientConcreteBuilder implements PatientBuilder {
     private String password;
     private String phone;
     private String address;
-    private Status status;
+    private int statusId;
     private int age;
     private String dob;
     private double fee = 0;
@@ -56,16 +54,16 @@ public class PatientConcreteBuilder implements PatientBuilder {
     }
 
     @Override
-    public PatientBuilder setPatientStatus(Status status) {
-        this.status = status;
+    public PatientBuilder setPatientStatusId(int statusId) {
+        this.statusId = statusId;
         return this;
     }
 
     @Override
     public PatientBuilder setPatientDOB(String dob) {
         this.dob = dob;
-        Date now = new Date();
-        this.age = now.getYear() - Integer.parseInt(dob.split("/")[2]);
+        int currentYear = LocalDateTime.now().getYear();
+        this.age = currentYear - Integer.parseInt(dob.split("/")[2]);
         return this;
     }
 
@@ -77,7 +75,7 @@ public class PatientConcreteBuilder implements PatientBuilder {
 
     @Override
     public Patient build() {
-        return new Patient(name, email, password, phone, address, id, status, age, dob, fee);
+        return new Patient(name, email, password, phone, address, id, statusId, age, dob, fee);
     }
 
 }

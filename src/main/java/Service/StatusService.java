@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Service;
 
 import Entity.Status;
 
-/**
- *
- * @author ASUS ROG
- */
 public interface StatusService {
 
     Status findById(int statusID);
+
+    int addStatus();
+
+    boolean updateStatus(Status status);
 }

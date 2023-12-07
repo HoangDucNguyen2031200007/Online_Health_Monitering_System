@@ -1,17 +1,13 @@
 package Entity;
 
-import java.util.List;
-
 public class Doctor extends User {
 
     private String doctorID;
-    private List<Patient> patients;
 
-    public Doctor(String name, String email, String password, String phone, String address, String doctorID,
-            List<Patient> patients) {
+    public Doctor(String name, String email, String password, String phone, String address, String doctorID) {
         super(name, email, password, phone, address);
         this.doctorID = doctorID;
-        this.patients = patients;
+
     }
 
     public Doctor() {
@@ -19,18 +15,5 @@ public class Doctor extends User {
 
     public String getDoctorID() {
         return doctorID;
-    }
-
-    public List<Patient> getPatients() {
-        return patients;
-    }
-
-    public Patient findPatientByName(String patientName) {
-        for (Patient p : patients) {
-            if (p.getName().equals(patientName)) {
-                return p;
-            }
-        }
-        return null;
     }
 }

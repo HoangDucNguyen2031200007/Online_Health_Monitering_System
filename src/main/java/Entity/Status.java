@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entity;
 
-/**
- *
- * @author ASUS ROG
- */
 public class Status {
+
     private String statusID;
     private String heartRate;
     private String bloodPressure;
@@ -26,23 +19,12 @@ public class Status {
         return statusID;
     }
 
-    public void setStatusID(String statusID) {
-        this.statusID = statusID;
-    }
-
     public String getHeartRate() {
         return heartRate;
-    }
-
-    public void setHeartRate(String heartRate) {
-        this.heartRate = heartRate;
     }
 
     public String getBloodPressure() {
         return bloodPressure;
     }
 
-    public void setBloodPressure(String bloodPressure) {
-        this.bloodPressure = bloodPressure;
-    }
 }

@@ -14,7 +14,6 @@ public class DoctorConcreteBuilder implements DoctorBuilder {
     private String password;
     private String phone;
     private String address;
-    private List<Patient> patients = new ArrayList<>();
 
     @Override
     public DoctorBuilder setDoctorId(String id) {
@@ -53,20 +52,8 @@ public class DoctorConcreteBuilder implements DoctorBuilder {
     }
 
     @Override
-    public DoctorBuilder setPatients(List<Patient> patients) {
-        this.patients = patients;
-        return this;
-    }
-
-    @Override
-    public DoctorBuilder addPatient(Patient patientID) {
-        this.patients.add(patientID);
-        return this;
-    }
-
-    @Override
     public Doctor build() {
-        return new Doctor(name, email, password, phone, address, id, patients);
+        return new Doctor(name, email, password, phone, address, id);
     }
 
 }

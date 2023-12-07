@@ -5,8 +5,6 @@
 package Builder;
 
 import Entity.Doctor;
-import Entity.Patient;
-import java.util.List;
 
 /**
  *
@@ -25,10 +23,6 @@ public interface DoctorBuilder {
     DoctorBuilder setDoctorPhone(String phone);
 
     DoctorBuilder setDoctorAddress(String address);
-
-    DoctorBuilder setPatients(List<Patient> patients);
-
-    DoctorBuilder addPatient(Patient patientID);
 
     Doctor build();
 }
