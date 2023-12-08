@@ -262,7 +262,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void doctorRegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorRegisterButtonActionPerformed
-        String name = doctorEmail.getText();
+        String name = doctorName.getText();
         String email = doctorEmail.getText();
         String password = doctorPassword.getText();
         String phone = doctorPhone.getText();

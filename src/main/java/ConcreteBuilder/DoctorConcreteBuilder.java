@@ -2,9 +2,6 @@ package ConcreteBuilder;
 
 import Builder.DoctorBuilder;
 import Entity.Doctor;
-import Entity.Patient;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DoctorConcreteBuilder implements DoctorBuilder {
 
