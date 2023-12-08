@@ -1,7 +1,6 @@
 package Builder;
 
 import Entity.Patient;
-import Entity.Status;
 
 public interface PatientBuilder {
     PatientBuilder setPatientId(String id);
