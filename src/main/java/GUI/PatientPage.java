@@ -428,6 +428,7 @@ public class PatientPage extends javax.swing.JFrame {
         String address = addressText.getText();
         String phone = phoneText.getText();
         String dob = birthText.getText();
+        String email = emailTxt.getText();
 
         patient = new PatientConcreteBuilder()
                 .setPatientId(id)
@@ -435,6 +436,7 @@ public class PatientPage extends javax.swing.JFrame {
                 .setPatientPhone(phone)
                 .setPatientDOB(dob)
                 .setPatientAddress(address)
+                .setPatientEmail(email)
                 .build();
 
         PatientService patientService = new PatientServiceImpl();

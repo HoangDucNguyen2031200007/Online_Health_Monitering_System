@@ -106,14 +106,31 @@ public class DoctorServiceImpl implements DoctorService {
 
         try {
             st = con.prepareStatement("""
-                                      select DoctorID from patientdoctor where PatientID=?
+                                      select d.* from doctor d
+                                      left join patientdoctor pd on d.DoctorID=pd.DoctorID
+                                      where pd.PatientID=?
                                       """);
             st.setString(1, patientId);
 
             rs = st.executeQuery();
 
             while (rs.next()) {
-                Doctor doctor = findById(rs.getString(1));
+                String id = rs.getString("DoctorID");
+                String name = rs.getString("DoctorName");
+                String phone = rs.getString("DoctorPhone");
+                String address = rs.getString("DoctorAddress");
+                String email = rs.getString("DoctorEmail");
+                String password = rs.getString("DoctorPassword");
+
+                Doctor doctor = new DoctorConcreteBuilder()
+                        .setDoctorId(id)
+                        .setDoctorName(name)
+                        .setDoctorEmail(email)
+                        .setDoctorPassword(password)
+                        .setDoctorPhone(phone)
+                        .setDoctorAddress(address)
+                        .build();
+
                 doctors.add(doctor);
             }
         } catch (SQLException ex) {

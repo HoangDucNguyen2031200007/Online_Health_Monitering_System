@@ -6,7 +6,6 @@ import java.util.List;
 
 import Context.DBConnUtils;
 import Entity.Patient;
-import Entity.Status;
 import Service.PatientService;
 import Service.StatusService;
 import java.sql.PreparedStatement;
